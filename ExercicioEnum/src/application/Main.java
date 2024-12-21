@@ -52,5 +52,10 @@ public class Main {
         int month = Integer.parseInt(monthAndYear.substring(0,2));
         int years = Integer.parseInt(monthAndYear.substring(3));
         sc.close();
+
+        System.out.print("name = " + worker.getName());
+        System.out.print("Departament = " + worker.getDepartment().getName());
+        System.out.print("Income for: " + monthAndYear + ":"+ String.format("%2.f",worker.income(years,month)));
+
     }
 }
