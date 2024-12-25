@@ -33,14 +33,15 @@ public class Main {
         System.out.print("How many contracts to this worker? ");
         int n = sc.nextInt();
 
-        for (int i=1; i<n;i++){
-            System.out.print("Enter contract "+ i + "data: ");
+        for (int i=1; i<=n;i++){
+            System.out.print("Enter contract "+ i + "# data: ");
             System.out.print("Date (DD/MM/YYYY): ");
             Date contractDate = sdf.parse(sc.next());
             System.out.print("Value per Hour: ");
             double valuePerHour = sc.nextDouble();
             System.out.print("Duration Hours: ");
             int hours = sc.nextInt();
+            sc.nextLine();
             HourContract hourContract = new HourContract(contractDate,valuePerHour,hours);
             worker.addContract(hourContract);
 
@@ -51,11 +52,11 @@ public class Main {
 //        Tratando a entrada de String e convertendo em Int
         int month = Integer.parseInt(monthAndYear.substring(0,2));
         int years = Integer.parseInt(monthAndYear.substring(3));
+
+
+        System.out.println("name = " + worker.getName());
+        System.out.println("Department = " + worker.getDepartment().getName());
+        System.out.println("Income for: " + monthAndYear + ":"+ String.format("%.2f",worker.income(years,month)));
         sc.close();
-
-        System.out.print("name = " + worker.getName());
-        System.out.print("Departament = " + worker.getDepartment().getName());
-        System.out.print("Income for: " + monthAndYear + ":"+ String.format("%2.f",worker.income(years,month)));
-
     }
 }
