@@ -2,6 +2,8 @@ import entities.Account;
 import entities.BusinessAccount;
 import entities.SavingsAccount;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -10,31 +12,27 @@ public class Main {
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
 
-        Account acc = new Account(01,"Raul",2.700);
-        BusinessAccount bcc = new BusinessAccount(102,"Ladjane",1.500,200.0);
+        List<Account> list = new ArrayList<>();
+        list.add(new SavingsAccount(1001,"Raul",500.0,0.01));
+        list.add(new SavingsAccount(1004,"silva",300.0,0.01));
+        list.add(new BusinessAccount(1002,"Teles",1000.0,500.0));
+        list.add(new BusinessAccount(1003,"Conceição",500.0,200.0));
 
-//      UPCASTING
+        double sum = 0;
 
-        Account acc1 = bcc;
-        Account acc2 = new BusinessAccount(103,"Teles",2.000,300.0);
-        Account acc3 = new SavingsAccount(104,"Silva",1.300,0.15);
-
-//       DOWNCASTING
-
-        BusinessAccount acc4 = (BusinessAccount) acc2;
-        acc4.loan(100.0);
-//        BusinessAccount acc5 = (BusinessAcount)acc3;
-        if (acc3 instanceof BusinessAccount){
-            BusinessAccount acc5 = (BusinessAccount) acc3;
-            acc5.loan(200.0);
-            System.out.println("Loan!");
+        for (Account acc : list){
+            sum += acc.getBalance();
         }
 
-        if (acc3 instanceof SavingsAccount){
-            SavingsAccount acc5 = (SavingsAccount) acc3;
-            acc5.updateBalance();
-            System.out.println("UPDATE!");
+        System.out.printf("Total Balance: %.2f%n", sum);
+
+        for (Account acc : list){
+            acc.deposit(10.0);
         }
+        for (Account acc: list){
+            System.out.printf("Updated balance for account %d: %.2f%n", acc.getNumber(),  acc.getBalance());
+        }
+
 
         sc.close();
     }
