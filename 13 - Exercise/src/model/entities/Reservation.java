@@ -45,6 +45,13 @@ public class Reservation {
     }
 
     public void updateDates(Date checkIn, Date checkOut){
+        Date now = new Date();
+        if (checkIn.before(now) || checkOut.before(now)){
+            throw new IllegalArgumentException("Reservation dates for update must be furure dates");
+        }
+        if (!checkOut.after(checkIn)){
+            throw new IllegalArgumentException("Check-out date must be after chek-in date");
+        }
         this.checkIn = checkIn;
         this.checkOut = checkOut;
     }
@@ -53,12 +60,12 @@ public class Reservation {
     public String toString(){
         return "Room"
                 + rommNumber
-                + ", checkin"
+                + ", checkin: "
                 + sdf.format(checkIn)
-                + ", checkout"
+                + ", checkout: "
                 + sdf.format(checkOut)
                 +", "
                 +duration()
-                +"nights";
+                +" nights";
     }
 }
