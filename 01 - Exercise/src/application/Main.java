@@ -18,8 +18,9 @@ public class Main {
         System.out.print("Quantity in stock: ");
         int quantity = sc.nextInt();
         Product product = new Product(name,prince,quantity);
-
+        // chamando o método toString
         System.out.println("Product data: " + product.toString());
+
 
 
         System.out.println("Enter the number of products to be added in stock: ");
